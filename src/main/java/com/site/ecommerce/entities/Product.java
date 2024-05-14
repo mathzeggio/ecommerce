@@ -16,4 +16,5 @@ public class Product {
 
     @NonNull
     private double price;
+
 }

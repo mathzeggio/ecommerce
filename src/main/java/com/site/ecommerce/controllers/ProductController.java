@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.site.ecommerce.services.ProductService;
 import com.site.ecommerce.entities.Product;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/products")
@@ -32,9 +33,12 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(
+            @RequestPart("product") Product product,
+            @RequestPart("imageFile") MultipartFile imageFile
+    ) {
         System.out.println("Product");
-        return productService.addProduct(product);
+        return productService.addProduct(product, imageFile);
     }
 
     @PutMapping("/{id}")
